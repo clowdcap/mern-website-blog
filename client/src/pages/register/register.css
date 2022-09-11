@@ -1,0 +1,62 @@
+
+
+    .register {
+        height: calc(100vh - 50px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(
+            rgba(255, 255, 255, 0.5),
+            rgba(255, 255, 255, 0.5)
+        ), url("https://images.pexels.com/photos/768473/pexels-photo-768473.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
+        background-size: cover;
+    }
+      
+        .register__titulo {
+            font-size: 50px;
+        }
+      
+        .register__form {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .register__form > label {
+            margin: 10px 0;
+        }
+        
+        .register__input {
+            padding: 10px;
+            background-color: white;
+            border: none;
+            border-radius: 10px;
+        }
+        
+        .register__input:focus {
+            outline: none;
+        }
+        
+        .register__button {
+            margin-top: 20px;
+            cursor: pointer;
+            background-color: lightcoral;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .login__button__register {
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            background-color: teal;
+            cursor: pointer;
+            padding: 10px;
+            border: none;
+            color: white;
+            border-radius: 10px;
+        }

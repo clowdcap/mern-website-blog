@@ -1,0 +1,65 @@
+section.topo {
+    width: 80%;
+    margin: 0 auto;
+    height: 50px;
+    background-color: white;
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    z-index: 999;
+    font-family: "Josefin Sans", sans-serif;
+    
+}
+
+    .topo__esquerda, .topo__direita {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .topo__esquerda .topo__icon {
+        font-size: 20px;
+        margin-right: 10px;
+        color: #444;
+        cursor: pointer;
+    }
+
+    .topo__meio {
+        flex: 6;
+    }
+        .topo__lista {
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+            .topo__lista__item {
+                margin-right: 20px;
+                font-size: 18px;
+                font-weight: 300;
+                cursor: pointer;
+            }
+
+            .topo__lista__item:hover{
+                color: gray;
+            }
+            
+
+        .topo__img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+
+        .topo__searchicon {
+            font-size: 18px;
+            color: #666;
+            cursor: pointer;
+        }
+
+ 
