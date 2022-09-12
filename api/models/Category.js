@@ -1,7 +1,7 @@
 /* 
 chama a biblioteca do mongo db 
 */
-mongoose = require('mongoose')
+const mongoose = require('mongoose')
 
 /*
 Criando a tabela do banco de dados
@@ -9,7 +9,8 @@ Schema, apatir de uma classe, criar uma variavel
 criando a estrutura de dados em um json
 criando as "colunas" como ... 
 */
-CategorySchema = new mongoose.Schema({
+const CategorySchema = new mongoose.Schema({
+    
         name: {
             type: String,
             required: true,

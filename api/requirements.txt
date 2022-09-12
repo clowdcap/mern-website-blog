@@ -1,1 +1,1 @@
-npm add express mongoose dotenv multer nodemon
+npm add express mongoose dotenv multer nodemon bcrypt 

@@ -5,12 +5,14 @@ Router - Traz a funcao de rotas http
 
 User, Post, Caregory - chama os Schemas "tabelas" e com essas estruturas de dados
 criadas, podemos chamalas para essa aplicação
-*/
-router = require('express').Router()
-User = require('../models/User')
-Post = require('./../models/Post')
-Category = require('./../models/Category')
 
+bcrypt - biblioteca que auxiliara nas criptografia das senhas
+*/
+const router = require('express').Router()
+const User = require('../models/User')
+const bcrypt = require('bcrypt')
+
+// CRIAR USER
 /*
 Definir rotas para Registro
     get - requisicao para pegar os dados do servidor
@@ -31,6 +33,10 @@ Definir rotas para Registro
 
     dentro da funcao que ira acontecer caso o endereço seja acessado, sera feito uma tentativa try
     onde caso der erro, nos avise
+    
+    sobre criptografia
+        salt - define o tamanho da senha criptografada
+        hashedPass - pega a senha que vai ser criptografada
 
     tente
         instancia um novo usuario apartir da estrutura de dados defina, recebendo os dados da requisição
@@ -47,13 +53,16 @@ Definir rotas para Registro
 */
 router.post('/register', async (req, res) => {
     try {
-       newUser = new User({
+        const salt = await bcrypt.genSalt(10)
+        const hashedPass = await bcrypt.hash(req.body.password, salt)
+        const newUser = new User({
             username: req.body.username,        
             email: req.body.email,
-            password: req.body.password,
-       })
-       user = await newUser.save()
-       res.status(user) 
+            password: hashedPass,
+        })
+
+        const user = await newUser.save()
+        res.status(200).json(user)
        
     } catch (error) {
         console.log(error.message)
@@ -61,5 +70,43 @@ router.post('/register', async (req, res) => {
     }
 }) 
 
+// LOGIN USER
+/* 
+Definir rotas para Login
+
+Da mesma forma apresentada nos Registros
+Tera uma rota, para login, onde sera feita a conferencia de dados
+o cliente encaminha seus dados para o servidor, onde sera feita essa conferencia
+e dependendo do resultado da comparação de dados, retornara dados diferentes
+se caso a comparação der OK (tudo igual) me dara um aprovado, caso constrario
+me retornara erro.
+
+user - espere achar um usuario igual na lista de todos os usuarios
+qnd terminar de buscar faça a condicional, se nao existir, da status 400 
+e indica que esta errado, senao, traga a resposta com os dados
+
+validate - espere ver se a senha e igual a senha que esta sendo comparada
+pelo sistema de criptografia e qnd terminar de buscar faça a condicional,
+se a senha nao for compativel, da status 400 e indica que esta errado, 
+senao, traga a resposta com os dados
+
+Forma atual da erro
+Pois nao sei pq mas qnd estou criptografando o dado
+nao consigo fazer a comparacao
+*/
+router.post("/login", async (req, res) => {
+    try {
+      const user = await User.findOne({ username: req.body.username });
+      !user && res.status(400).json("username incorreto!");
+  
+      const validated = await bcrypt.compare(req.body.password, user.password);
+      !validated && res.status(400).json("Password incorreto!");
+  
+      const { password, ...others } = user._doc;
+      res.status(200).json(others);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
 
 module.exports = router

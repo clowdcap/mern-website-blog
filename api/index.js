@@ -4,13 +4,17 @@ app - instancia o express para aplicação
 dotenv - biblioteca que auxilia na segurança de alguns dados
 mongoose - banco de dados não relacional MongoDB
 authRoute - chama as funcoes de rotas das requisições, criada em rotas auth.js
-*/
-express = require('express')
-app = express()
-dotenv = require('dotenv')
-mongoose = require('mongoose')
-authRoute = require('./routes/auth')
 
+*/
+const express = require('express')
+const app = express()
+const dotenv = require('dotenv')
+const mongoose = require('mongoose')
+const authRoute = require('./routes/auth')
+const userRoute = require('./routes/users')
+const postRoute = require('./routes/posts')
+const categoryRoute = require('./routes/categories')
+const multer = require("multer")
 
 /*
 express.json - Faz com que os dados para requisicao e de resposta seja em formato json 
@@ -28,11 +32,6 @@ app.use('/', (req, res) => {
 })
 */
 
-/*
-Agora as rotas definidas em auth.js
-rota geral e as rotas
-*/
-app.use('/api/auth', authRoute)
 
 /*
 chamando a funcoa config, que possibilita puxar dados criados
@@ -51,13 +50,36 @@ mongoose.connect(process.env.MONGO_URL)
 .then(console.log("MongoDB:: Banco de Dados Conectado:: Status={200}"))
 .catch((erro) => console.log(erro))
 
+/* */
+const storage = multer.diskStorage({
+    destination:(req, file, cb) => {
+        cb(null, 'images')
+    }, filename: (req, file, cb) => {
+        cb(null, req.body.name)
+    }
+})
+
+const upload = multer({storage: storage})
+app.post('/api/upload', upload.single('file'), (req, res) => {
+    res.status(200).json('Arquivo carregado com sucesso')
+})
+
+/*
+Agora as rotas definidas em auth.js
+rota geral e as rotas
+*/
+app.use('/api/auth', authRoute)
+app.use('/api/users', userRoute)
+app.use('/api/posts', postRoute)
+app.use('/api/categories', categoryRoute)
+
 /* 
 PORT - Define o valor da Porta das requisições
 LINK_APP - Link do APP para visualização pelo navegador
 app.listen - Liga o Servidor utilizando a Porta e funcao de mostrar o Link
 */
-PORT = 5000
-LINK_APP = `http://localhost:${PORT}`
+const PORT = 5000
+const LINK_APP = `http://localhost:${PORT}`
 app.listen(PORT, ()=> {
     console.log(`NodeJS:: Server Conectado:: Link: ${LINK_APP}`)
 })
