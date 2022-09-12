@@ -1,6 +1,13 @@
+/* 
+router - define as rotas para API
+Post - importa a estrutura de dados para integracao com banco de dados
+*/
 const router = require("express").Router();
 const Post = require("../models/Post")
 
+/*
+Da mesma forma aplicada em usuario, foi aplicado aqui em posts
+*/
 // CRIAR POST
 router.post("/", async (req, res) => {
   const newPost = new Post(req.body)

@@ -80,19 +80,6 @@ o cliente encaminha seus dados para o servidor, onde sera feita essa conferencia
 e dependendo do resultado da comparação de dados, retornara dados diferentes
 se caso a comparação der OK (tudo igual) me dara um aprovado, caso constrario
 me retornara erro.
-
-user - espere achar um usuario igual na lista de todos os usuarios
-qnd terminar de buscar faça a condicional, se nao existir, da status 400 
-e indica que esta errado, senao, traga a resposta com os dados
-
-validate - espere ver se a senha e igual a senha que esta sendo comparada
-pelo sistema de criptografia e qnd terminar de buscar faça a condicional,
-se a senha nao for compativel, da status 400 e indica que esta errado, 
-senao, traga a resposta com os dados
-
-Forma atual da erro
-Pois nao sei pq mas qnd estou criptografando o dado
-nao consigo fazer a comparacao
 */
 router.post("/login", async (req, res) => {
     try {

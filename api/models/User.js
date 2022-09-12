@@ -1,5 +1,5 @@
 /* 
-chama a biblioteca do mongo db 
+Chama a biblioteca do MongoDB 
 */
 const mongoose = require('mongoose')
 

@@ -3,16 +3,17 @@ Agora, sera feito o gerenciamento dos bancos de dados com as rotas
 API - definindo rotas para certas areas a serem acessadas pelo banco de dados
 Router - Traz a funcao de rotas http
 
-User, Post, Caregory - chama os Schemas "tabelas" e com essas estruturas de dados
+User, Post - chama os Schemas "tabelas" e com essas estruturas de dados
 criadas, podemos chamalas para essa aplicação
-
 */
-
 const router = require("express").Router()
 const User = require("../models/User")
 const Post = require("../models/Post")
 const bcrypt = require("bcrypt")
 
+/*
+Da mesma forma aplicada nos posts, foi aplicado aqui em users
+*/
 // ATUALIZAR USER
 /*
 Definir rotas para Update

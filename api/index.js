@@ -4,7 +4,10 @@ app - instancia o express para aplicação
 dotenv - biblioteca que auxilia na segurança de alguns dados
 mongoose - banco de dados não relacional MongoDB
 authRoute - chama as funcoes de rotas das requisições, criada em rotas auth.js
-
+userRoute - chama as funcoes de rotas das requisições, criada em rotas users.js
+postRoute - chama as funcoes de rotas das requisições, criada em rotas posts.js
+categoryRoute - chama as funcoes de rotas das requisições, criada em rotas categories.js
+multer - biblioteca que intermedia a entrada de arquivos para o sistema
 */
 const express = require('express')
 const app = express()
@@ -25,16 +28,18 @@ app.use(express.json())
 app.use('/' - Define a rota e a funcao que recebe qnd ela e acessada
 req - valor abriga a requisicao do cliente ao servidor
 res - valor abriga a resposta do servidor para o cliente
+*/
 
+/*
+Codigo base
 app.use('/', (req, res) => {
     console.log('Acessado a Página Inicial') 
     res.send('Pagina Inicial')
 })
 */
 
-
 /*
-chamando a funcoa config, que possibilita puxar dados criados
+Chamando a funcoa config, que possibilita puxar dados criados
 no aruqivo .env
 onde fica armazenado dados que nao podem ser mostrados ao client
 */
@@ -50,7 +55,10 @@ mongoose.connect(process.env.MONGO_URL)
 .then(console.log("MongoDB:: Banco de Dados Conectado:: Status={200}"))
 .catch((erro) => console.log(erro))
 
-/* */
+/* 
+Apos importar multer, se define o local de armazenamento de dados
+importnado o arquivo pelo seu nome dentro do local destinado.
+*/
 const storage = multer.diskStorage({
     destination:(req, file, cb) => {
         cb(null, 'images')
@@ -59,6 +67,9 @@ const storage = multer.diskStorage({
     }
 })
 
+/* 
+Define a rota que faca o upload do arquivo 
+*/
 const upload = multer({storage: storage})
 app.post('/api/upload', upload.single('file'), (req, res) => {
     res.status(200).json('Arquivo carregado com sucesso')
@@ -66,7 +77,7 @@ app.post('/api/upload', upload.single('file'), (req, res) => {
 
 /*
 Agora as rotas definidas em auth.js
-rota geral e as rotas
+rota base - api/ - as rotas de sua respectiva funcao  
 */
 app.use('/api/auth', authRoute)
 app.use('/api/users', userRoute)
