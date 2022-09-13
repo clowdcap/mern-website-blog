@@ -24,13 +24,16 @@ Uso dos Hooks
 */
 const Home = () => {
 
-    /* useState */
+    /* useState par armazenar os post */
     const [posts, setPosts] = useState([])
 
     useEffect(()=> {
         const fetchPosts = async ()=> {
             const res = await axios.get('/posts')
             console.log(res)
+
+            /* apos pegar dados do post aplica-lo no estado */
+            setPosts(res.data)
         }
         fetchPosts()
     }, [])
@@ -39,7 +42,7 @@ const Home = () => {
         <>
             <Header />
             <section className="home center">
-                <Posts />
+                <Posts posts={posts} />
                 <Sidebar />
             </section>
         </>

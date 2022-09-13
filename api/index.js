@@ -31,7 +31,7 @@ res - valor abriga a resposta do servidor para o cliente
 */
 
 /*
-Codigo base
+Codigo base de rotas
 app.use('/', (req, res) => {
     console.log('Acessado a Página Inicial') 
     res.send('Pagina Inicial')
@@ -58,13 +58,18 @@ mongoose.connect(process.env.MONGO_URL)
 /* 
 Apos importar multer, se define o local de armazenamento de dados
 importnado o arquivo pelo seu nome dentro do local destinado.
+
+storage - variavel que instancia a estrutura de upload com multer
+    destination - 'rota' de destino - nome da pasta
+    filename - config do salvamento do arquivo, no caso, define o nome do arquivo
 */
 const storage = multer.diskStorage({
-    destination:(req, file, cb) => {
-        cb(null, 'images')
-    }, filename: (req, file, cb) => {
-        cb(null, req.body.name)
-    }
+    destination: (req, file, cb) => {
+        cb(null, "images");
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.originalname)
+    },
 })
 
 /* 
@@ -94,4 +99,3 @@ const LINK_APP = `http://localhost:${PORT}`
 app.listen(PORT, ()=> {
     console.log(`NodeJS:: Server Conectado:: Link: ${LINK_APP}`)
 })
-

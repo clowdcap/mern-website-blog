@@ -4,15 +4,13 @@ import './posts.css'
 /* Import components */
 import Post from './../post/Post'
 
-const Posts = () => {
+const Posts = ({posts}) => {
   return (
     <section className="posts">
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
+      {posts.map((p) => (
+        <Post post={p}/>
+      ))}
+       
     </section>
   )
 }
