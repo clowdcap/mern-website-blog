@@ -1,4 +1,7 @@
+/* Import padrao react */
 import React from 'react'
+
+/* Import Css */
 import './singlepost.css'
 
 const Single_Post = () => {

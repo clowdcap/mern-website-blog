@@ -1,5 +1,14 @@
+/* import padrao react */
 import React from 'react'
+
+/* 
+Import link das rotas instanciados no App.jsx
+link - instancia a funcao
+to - qual url chamar
+*/
 import { Link } from 'react-router-dom'
+
+/* Import Css */
 import './login.css'
 
 const Login = () => {

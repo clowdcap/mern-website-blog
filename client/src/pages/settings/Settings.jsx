@@ -1,6 +1,12 @@
+/* Import padrao react */
 import React from 'react'
+
+/* Import css */
 import './settings.css'
+
+/* Import components */
 import Sidebar from '../../components/sidebar/Sidebar'
+
 
 const Settings = () => {
   return (

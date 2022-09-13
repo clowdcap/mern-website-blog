@@ -1,4 +1,7 @@
+/* Import Css */
 import './posts.css'
+
+/* Import components */
 import Post from './../post/Post'
 
 const Posts = () => {

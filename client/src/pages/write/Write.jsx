@@ -1,4 +1,7 @@
+/* Import padrao react */
 import React from 'react'
+
+/* Import Css */
 import './write.css'
 
 const Write = () => {
@@ -27,4 +30,4 @@ const Write = () => {
     )
 }
 
-export default Write
+export default Write    
