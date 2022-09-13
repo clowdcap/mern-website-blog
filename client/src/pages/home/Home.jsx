@@ -12,6 +12,9 @@ import './home.css'
 /* Import Axios */
 import axios from 'axios'
 
+/* Import router-dom */
+import { useLocation } from 'react-router-dom'
+
 /*
 Estrutura da pagina Home
 Css apenas indica que a class home tem display flex
@@ -24,15 +27,28 @@ Uso dos Hooks
 */
 const Home = () => {
 
-    /* useState par armazenar os post */
+    /* 
+    useState
+    */
     const [posts, setPosts] = useState([])
+    const location = useLocation
 
     useEffect(()=> {
         const fetchPosts = async ()=> {
-            const res = await axios.get('/posts')
-            console.log(res)
 
-            /* apos pegar dados do post aplica-lo no estado */
+            /*
+            Em res - armazenado todos os dados requisitados na rota '/posts' 
+            */
+            const res = await axios.get('/posts')
+
+            /* 
+            Mostra essa resposta no console 
+            */
+            console.log('Posts: ', res.data)
+
+            /* 
+            Apos pegar dados do post aplica-lo no estado 
+            */
             setPosts(res.data)
         }
         fetchPosts()
