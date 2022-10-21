@@ -7,9 +7,9 @@ Esssa aplicação me troxe bastante desafio, onde o mesmo pode servir como mocku
 # AINDA ESTÁ EM PRODUÇÃO, ALGUNS BUGS PRECISAM SER RESOLVIDOS
 
 ## Tecnologia aplicada
-**React JS, Hooks e React-Router**
-**Node JS, Express, Axios, Bcrypt**
-**Dotenv, MongoDB**
+- **React JS, Hooks e React-Router**
+- **Node JS, Express, Axios, Bcrypt**
+- **Dotenv, MongoDB**
 
 # Primeiros comandos
 Abrir um terminal para o front e outro para o back
