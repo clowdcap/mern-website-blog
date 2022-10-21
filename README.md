@@ -1,5 +1,5 @@
-# mern-website-blog
-Blog Web - BackEnd &amp; FrontEnd
+# MERN Website Blog
+Blog Web - BackEnd & FrontEnd
 
 Esse projeto tem como intuito de demonstrar minhas habilidades e conceitos com React Js e Node Js, frisando apenas o Front-End e Back-End
 Esssa aplicação me troxe bastante desafio, onde o mesmo pode servir como mockup para outros projetos de blog.
